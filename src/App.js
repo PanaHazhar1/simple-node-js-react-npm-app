@@ -8,6 +8,7 @@ class App extends Component {
     this.state = {
       newTaskDescription: '',
       newTaskLink: '',
+      newTaskDate: '',
       tasks: []
     };
   }
@@ -38,6 +39,19 @@ class App extends Component {
     });
   };
 
+  handleDateChange = (event, index) => {
+    const newDate = event.target.value;
+    this.setState(state => {
+      const tasks = state.tasks.map((task, i) => {
+        if (i === index) {
+          task.date = newDate;
+        }
+        return task;
+      });
+      return { tasks };
+    });
+  };
+
   handleNewTaskDescriptionChange = (event) => {
     this.setState({ newTaskDescription: event.target.value });
   };
@@ -46,20 +60,26 @@ class App extends Component {
     this.setState({ newTaskLink: event.target.value });
   };
 
+  handleNewTaskDateChange = (event) => {
+    this.setState({ newTaskDate: event.target.value });
+  };
+
   addTask = () => {
-    const { tasks, newTaskDescription, newTaskLink } = this.state;
+    const { tasks, newTaskDescription, newTaskLink, newTaskDate } = this.state;
     const newTaskNumber = tasks.length + 1;
     const newTask = {
       title: `Task ${newTaskNumber}`,
       description: newTaskDescription,
       link: newTaskLink,
+      date: newTaskDate,
       time: new Date().toLocaleString(),
       isEditing: true
     };
     this.setState({
       tasks: [...tasks, newTask],
       newTaskDescription: '',
-      newTaskLink: ''
+      newTaskLink: '',
+      newTaskDate: ''
     });
   };
 
@@ -100,6 +120,7 @@ class App extends Component {
                 <div key={index} className="task">
                   <h3>{task.title}</h3>
                   <p><strong>Added at:</strong> {task.time}</p>
+                  {task.date && <p><strong>Due date:</strong> {task.date}</p>}
                   {task.isEditing ? (
                     <div>
                       <input
@@ -115,7 +136,13 @@ class App extends Component {
                         placeholder="Add a link"
                         className="link-input"
                       />
-                      <button onClick={() => this.toggleEdit(index)} className="save-button">Save</button>
+                      <input
+                        type="date"
+                        value={task.date}
+                        onChange={(e) => this.handleDateChange(e, index)}
+                        className="date-input"
+                      />
+                      <button onClick={() => this.toggleEdit(index)} className="update-button">Update</button>
                     </div>
                   ) : (
                     <div>
@@ -141,6 +168,12 @@ class App extends Component {
                 value={this.state.newTaskLink}
                 onChange={this.handleNewTaskLinkChange}
                 placeholder="Add a link"
+                className="input-field"
+              />
+              <input
+                type="date"
+                value={this.state.newTaskDate}
+                onChange={this.handleNewTaskDateChange}
                 className="input-field"
               />
               <button onClick={this.addTask} className="add-button">Add Task</button>
