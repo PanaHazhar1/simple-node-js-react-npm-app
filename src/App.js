@@ -25,6 +25,19 @@ class App extends Component {
     });
   };
 
+  handleLinkChange = (event, index) => {
+    const newLink = event.target.value;
+    this.setState(state => {
+      const tasks = state.tasks.map((task, i) => {
+        if (i === index) {
+          task.link = newLink;
+        }
+        return task;
+      });
+      return { tasks };
+    });
+  };
+
   handleNewTaskDescriptionChange = (event) => {
     this.setState({ newTaskDescription: event.target.value });
   };
@@ -62,6 +75,13 @@ class App extends Component {
     });
   };
 
+  deleteTask = (index) => {
+    this.setState(state => {
+      const tasks = state.tasks.filter((task, i) => i !== index);
+      return { tasks };
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -91,7 +111,7 @@ class App extends Component {
                       <input
                         type="text"
                         value={task.link}
-                        onChange={(e) => this.handleDescriptionChange(e, index)}
+                        onChange={(e) => this.handleLinkChange(e, index)}
                         placeholder="Add a link"
                         className="link-input"
                       />
@@ -104,6 +124,7 @@ class App extends Component {
                       <button onClick={() => this.toggleEdit(index)} className="edit-button">Edit</button>
                     </div>
                   )}
+                  <button onClick={() => this.deleteTask(index)} className="delete-button">Delete</button>
                 </div>
               ))}
             </div>
