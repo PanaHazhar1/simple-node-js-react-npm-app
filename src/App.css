@@ -43,55 +43,21 @@
   margin: auto;
 }
 
-.item-section, .task-section {
+.task-section {
   margin: 20px auto;
   width: 100%;
   text-align: left;
 }
 
-.item-list, .task-list {
+.task-list {
   list-style-type: none;
   padding: 0;
 }
 
-.item {
-  background-color: #fff;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.input-field, .description-input {
-  padding: 10px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: calc(100% - 130px);
-}
-
-.add-button, .edit-button, .save-button {
-  padding: 10px 20px;
-  background-color: #61dafb;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.add-button:hover, .edit-button:hover, .save-button:hover {
-  background-color: #21a1f1;
-}
-
-.task-list {
-  display: flex;
-  flex-direction: column;
-}
-
 .task {
   background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 20px;
   margin: 10px 0;
+  padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -104,4 +70,31 @@
 .task p {
   margin: 10px 0 0;
   color: #333;
+}
+
+.input-field, .description-input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: calc(100% - 130px);
+}
+
+.add-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.add-button, .edit-button, .save-button {
+  padding: 10px 20px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-button:hover, .edit-button:hover, .save-button:hover {
+  background-color: #21a1f1;
 }
