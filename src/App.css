@@ -1,10 +1,24 @@
 .App {
   text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #333;
 }
 
 .App-logo {
   height: 80px;
   pointer-events: none;
+  animation: App-logo-spin infinite 20s linear;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .App-header {
@@ -14,37 +28,49 @@
 }
 
 .App-title {
-  font-size: 2em;
+  font-size: 2.5em;
+  margin: 0;
 }
 
 .App-intro {
-  font-size: large;
+  font-size: 1.2em;
 }
 
 .App-content {
   padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
 }
 
-.item-list {
+.item-section, .task-section {
+  margin: 20px auto;
+  width: 100%;
+  text-align: left;
+}
+
+.item-list, .task-list {
   list-style-type: none;
   padding: 0;
 }
 
 .item {
-  background-color: #f4f4f4;
+  background-color: #fff;
   margin: 5px 0;
   padding: 10px;
   border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.input-field {
+.input-field, .description-input {
   padding: 10px;
   margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  width: calc(100% - 130px);
 }
 
-.add-button {
+.add-button, .edit-button, .save-button {
   padding: 10px 20px;
   background-color: #61dafb;
   border: none;
@@ -52,14 +78,13 @@
   cursor: pointer;
 }
 
-.add-button:hover {
+.add-button:hover, .edit-button:hover, .save-button:hover {
   background-color: #21a1f1;
 }
 
 .task-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .task {
@@ -67,7 +92,6 @@
   border: 1px solid #ddd;
   padding: 20px;
   margin: 10px 0;
-  width: 80%;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
