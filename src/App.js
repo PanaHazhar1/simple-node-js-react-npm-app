@@ -7,7 +7,12 @@ class App extends Component {
     super(props);
     this.state = {
       items: ['Item 1', 'Item 2', 'Item 3'],
-      newItem: ''
+      newItem: '',
+      tasks: [
+        { title: 'Task 1', description: 'Description for task 1' },
+        { title: 'Task 2', description: 'Description for task 2' },
+        { title: 'Task 3', description: 'Description for task 3' }
+      ]
     };
   }
 
@@ -34,9 +39,9 @@ class App extends Component {
         </p>
         <div className="App-content">
           <h2>Item List</h2>
-          <ul>
+          <ul className="item-list">
             {this.state.items.map((item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index} className="item">{item}</li>
             ))}
           </ul>
           <input
@@ -44,8 +49,18 @@ class App extends Component {
             value={this.state.newItem}
             onChange={this.handleChange}
             placeholder="Add a new item"
+            className="input-field"
           />
-          <button onClick={this.addItem}>Add Item</button>
+          <button onClick={this.addItem} className="add-button">Add Item</button>
+          <h2>Task List</h2>
+          <div className="task-list">
+            {this.state.tasks.map((task, index) => (
+              <div key={index} className="task">
+                <h3>{task.title}</h3>
+                <p>{task.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
