@@ -3,26 +3,81 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 80px;
+  pointer-events: none;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #282c34;
   padding: 20px;
   color: white;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .App-intro {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.App-content {
+  padding: 20px;
+}
+
+.item-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.item {
+  background-color: #f4f4f4;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.input-field {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-button {
+  padding: 10px 20px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #21a1f1;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.task {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px 0;
+  width: 80%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.task p {
+  margin: 10px 0 0;
+  color: #333;
 }
