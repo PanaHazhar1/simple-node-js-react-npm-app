@@ -87,7 +87,7 @@
   margin-top: 20px;
 }
 
-.add-button, .edit-button, .save-button {
+.add-button, .edit-button, .save-button, .delete-button {
   padding: 10px 20px;
   background-color: #61dafb;
   border: none;
@@ -95,6 +95,6 @@
   cursor: pointer;
 }
 
-.add-button:hover, .edit-button:hover, .save-button:hover {
+.add-button:hover, .edit-button:hover, .save-button:hover, .delete-button:hover {
   background-color: #21a1f1;
 }
