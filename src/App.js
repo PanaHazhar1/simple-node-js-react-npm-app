@@ -7,11 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       newTaskDescription: '',
-      tasks: [
-        { title: 'Task 1', description: 'Description for task 1', isEditing: false },
-        { title: 'Task 2', description: 'Description for task 2', isEditing: false },
-        { title: 'Task 3', description: 'Description for task 3', isEditing: false }
-      ]
+      newTaskLink: '',
+      tasks: []
     };
   }
 
@@ -32,17 +29,24 @@ class App extends Component {
     this.setState({ newTaskDescription: event.target.value });
   };
 
+  handleNewTaskLinkChange = (event) => {
+    this.setState({ newTaskLink: event.target.value });
+  };
+
   addTask = () => {
-    const { tasks, newTaskDescription } = this.state;
+    const { tasks, newTaskDescription, newTaskLink } = this.state;
     const newTaskNumber = tasks.length + 1;
     const newTask = {
       title: `Task ${newTaskNumber}`,
       description: newTaskDescription,
+      link: newTaskLink,
+      time: new Date().toLocaleString(),
       isEditing: true
     };
     this.setState({
       tasks: [...tasks, newTask],
-      newTaskDescription: ''
+      newTaskDescription: '',
+      newTaskLink: ''
     });
   };
 
@@ -75,6 +79,7 @@ class App extends Component {
               {this.state.tasks.map((task, index) => (
                 <div key={index} className="task">
                   <h3>{task.title}</h3>
+                  <p><strong>Added at:</strong> {task.time}</p>
                   {task.isEditing ? (
                     <div>
                       <input
@@ -83,11 +88,19 @@ class App extends Component {
                         onChange={(e) => this.handleDescriptionChange(e, index)}
                         className="description-input"
                       />
+                      <input
+                        type="text"
+                        value={task.link}
+                        onChange={(e) => this.handleDescriptionChange(e, index)}
+                        placeholder="Add a link"
+                        className="link-input"
+                      />
                       <button onClick={() => this.toggleEdit(index)} className="save-button">Save</button>
                     </div>
                   ) : (
                     <div>
                       <p>{task.description}</p>
+                      {task.link && <p><a href={task.link} target="_blank" rel="noopener noreferrer">{task.link}</a></p>}
                       <button onClick={() => this.toggleEdit(index)} className="edit-button">Edit</button>
                     </div>
                   )}
@@ -100,6 +113,13 @@ class App extends Component {
                 value={this.state.newTaskDescription}
                 onChange={this.handleNewTaskDescriptionChange}
                 placeholder="New task description"
+                className="input-field"
+              />
+              <input
+                type="text"
+                value={this.state.newTaskLink}
+                onChange={this.handleNewTaskLinkChange}
+                placeholder="Add a link"
                 className="input-field"
               />
               <button onClick={this.addTask} className="add-button">Add Task</button>
